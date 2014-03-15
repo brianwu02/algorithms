@@ -72,7 +72,7 @@ class Heap(object):
         running time: O(n) where n = len(A)
         """
         A = self.data
-        heap_size = len(A) - 1
+        heap_size = len(A) 
         for i in range(heap_size/2, -1, -1):
             print i
             self.max_heapify(i)
