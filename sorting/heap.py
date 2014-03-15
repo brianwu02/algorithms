@@ -13,9 +13,6 @@ class Heap(object):
 
     Graph Algorithm: by using heap as internal traversal data structure, run time will below
     reduced by polynomial order. ex: prim's minimal spanning tree & Djikstra's shorest path.
-
-
-
     """
 
     def __init__(self,val=[4, 1, 3, 2, 16, 9, 10, 14, 8, 7]):
@@ -56,7 +53,7 @@ class Heap(object):
 
         if largest != i:
             # swap A[i] and A[largest] then recursively call max_heapify down the node 
-            self.swap(i, largest)
+            self._swap(i, largest)
             self.max_heapify(largest)
 
     def build_max_heap(self):
@@ -81,26 +78,42 @@ class Heap(object):
         self.build_max_heap()
         heap_length = self.heap_length
         for i in range(heap_length, 0, -1):
-            self.swap(0, i)
+            self._swap(0, i)
             self.heap_size -= 1
             self.max_heapify(0)
         print ("sorted heap %s") % (self.A)
 
-    def swap(self, i, j):
+    def _swap(self, i, j):
         self.A[i], self.A[j] = self.A[j], self.A[i]
 
-    def max_heap_insert(self):
+    def insert(self):
         pass
     
-    def heap_extract_max(self):
-        pass
+    def extract_max(self):
+        if self.heap_size < 0:
+            raise Exception("heap underflow")
+        max = self.A[0]
+        self.A[0] = self.A[self.heap_size]
+        self.heap_size -= 1
+        self.max_heapify(0)
+        return max
 
-    def heap_increase_key(self):
+    def increase_key(self):
         pass
     
-    def heap_maximum(self):
-        pass
+    def get_heap_maximum(self):
+        return self.A[0]
+
+    def __repr__(self):
+        return str(self.A)
 
 if __name__ == "__main__":
     heap = Heap([2,4,1,8,21,4,2,12,3,6])
-    heap.heap_sort()
+    heap.build_max_heap()
+    max = heap.extract_max()
+    print max
+    print heap 
+    max = heap.extract_max()
+    print max
+    print heap
+
