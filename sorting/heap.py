@@ -1,4 +1,22 @@
 class Heap(object):
+    """
+    Real life Use cases:
+
+    Due to lack of pointers since it is an array based data structure, operations tend
+    to be faster than for a binary tree. 
+    
+    Heap Sort: one of the sorting algorithms due to the fact that sorting is done in-place.
+    wit no quadratic worst-case scenario.
+    
+    Selection Algorithm: finding min, max, median or k-th largest element can be done in linear time
+    often times constant, using heap data structure.
+
+    Graph Algorithm: by using heap as internal traversal data structure, run time will below
+    reduced by polynomial order. ex: prim's minimal spanning tree & Djikstra's shorest path.
+
+
+
+    """
 
     def __init__(self,val=[4, 1, 3, 2, 16, 9, 10, 14, 8, 7]):
         # initialize the heap with dummy variables
