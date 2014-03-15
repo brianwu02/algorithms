@@ -9,11 +9,9 @@ class Node(object):
 
 class Heap(object):
 
-    def __init__(self):
+    def __init__(self,val=[4, 1, 3, 2, 16, 9, 10, 14, 8, 7]):
         # initialize the heap with dummy variables
-        #self.heap = [16, 14, 10, 8, 7, 9, 3, 2, 4, 1]
-        #self.data = [5, 4, 9, 7, 19, 8, 17, 2, 6, 5, 21]
-        self.A = [4, 1, 3, 2, 16, 9, 10, 14, 8, 7]
+        self.A = val
         self.heap_size = len(self.A) - 1
         # this attribute does not get modified.
         self.heap_length = len(self.A) - 1
@@ -57,13 +55,20 @@ class Heap(object):
         Input:  A => an unsorted array
         Output: A => modified to represent a heap 
         running time: O(n) where n = len(A)
+
+        calls max_heapify for all nodes below children(root).
         """
         for i in range(self.heap_size / 2, -1, -1):
             self.max_heapify(i)
         print("max_heap: %s") % (self.A)
 
     def heap_sort(self):
-        """runs in O(n lg n) sorts an array in place. """
+        """runs in O(n lg n) sorts an array in place. 
+        swaps the last element(lowest value) in max heap with first element(highest)
+        in heap and then calls max_heapify which will recursively move the highest
+        value to the root.
+
+        """
         self.build_max_heap()
         heap_length = self.heap_length
         for i in range(heap_length, 0, -1):
@@ -88,5 +93,5 @@ class Heap(object):
         pass
 
 if __name__ == "__main__":
-    heap = Heap()
+    heap = Heap([2,4,1,8,21,4,2,12,3,6])
     heap.heap_sort()
