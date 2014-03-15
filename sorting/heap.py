@@ -15,38 +15,21 @@ class Heap(object):
         #self.data = [5, 4, 9, 7, 19, 8, 17, 2, 6, 5, 21]
         self.data = [4, 1, 3, 2, 16, 9, 10, 14, 8, 7]
         self.heap_size = len(self.data) - 1
+        self.heap_length = len(self.data)
         print(self.data)
         pass
 
     def get_parent(self, i):
-        """ Input:  A => array representing a heap
-                    i => an array index
-            Output: index in A of the parent i. """
+        """returns the parent index i of the current node"""
         return i / 2
 
     def left(self, i):
-        """Input:  A => an array representing a heap
-           Output: i => the index in A of the left child i
-        """
+        """returns the left child index i of the current node"""
         return 2 * i + 1
 
     def right(self, i):
-        """Input:   A => an array representing a heap
-                    i => an array index
-           Output:  the index in A of the right child i
-        """
+        """returns the right child index i of the current node"""
         return 2 * (i + 1)
-
-    def heap_length(self):
-        """returns the number of elements in the array"""
-        return len(self.data)
-
-    def _heap_size(self):
-        """returns how many elements in the heap are stored within array A.
-        Only elements in A[1..self.heap_size] where 0 <= A.heap_size <= A.length
-        are valid elements of the heap.
-        """
-        return len(self.data) - 1
 
     def max_heapify(self, i):
         """runs in O(lg n) time. maintains the max-heap property"""
@@ -83,12 +66,15 @@ class Heap(object):
         A = self.data
         for i in range(len(A)-1, 0, -1):
             print i
-            A[0], A[i] = A[i], A[0]
+            #A[0], A[i] = A[i], A[0]
+            self.swap(0, i)
             self.heap_size -= 1
             self.max_heapify(0)
         print self.data
-            
 
+    def swap(self, i, j):
+        A = self.data
+        A[i], A[j] = A[j], A[i]
 
     def max_heap_insert(self):
         pass
