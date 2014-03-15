@@ -98,8 +98,17 @@ class Heap(object):
         self.max_heapify(0)
         return max
 
-    def increase_key(self):
-        pass
+    def set_heap_increase_key(self, i, key):
+        """increases value of A[i] to key. if key < A[i], raise exception.
+        otherwise, assign the value of key to A[i].
+        """
+        if key < self.A[i]:
+            raise Exception("new key is smaller than current key")
+        self.A[i] = key
+        parent = self.get_parent(i)
+        while i > 0 and self.A[parent] < self.A[i]:
+            self._swap(i, parent)
+            i = self.get_parent(i)
     
     def get_heap_maximum(self):
         return self.A[0]
@@ -116,4 +125,8 @@ if __name__ == "__main__":
     max = heap.extract_max()
     print max
     print heap
-
+    heap.build_max_heap()
+    print heap
+    
+    #heap.set_heap_increase_key(1, 20)
+    #print heap 
