@@ -85,9 +85,13 @@ class Heap(object):
 
     def _swap(self, i, j):
         self.A[i], self.A[j] = self.A[j], self.A[i]
+        print("swapping %s with %s") % (self.A[i], self.A[j])
 
-    def insert(self):
-        pass
+    def insert(self, key):
+        """implements the max-heap-insert. """
+        self.heap_size += 1
+        self.A.append(None)  #self.A[self.heap_size] = None
+        self.heap_increase_key(self.heap_size, key)
     
     def extract_max(self):
         if self.heap_size < 0:
@@ -98,16 +102,16 @@ class Heap(object):
         self.max_heapify(0)
         return max
 
-    def set_heap_increase_key(self, i, key):
+    def heap_increase_key(self, i, key):
         """increases value of A[i] to key. if key < A[i], raise exception.
         otherwise, assign the value of key to A[i].
         """
+        print("key: %s, self.A[i]: %s") % (key, self.A[i])
         if key < self.A[i]:
             raise Exception("new key is smaller than current key")
         self.A[i] = key
-        parent = self.get_parent(i)
-        while i > 0 and self.A[parent] < self.A[i]:
-            self._swap(i, parent)
+        while i > 0 and self.A[self.get_parent(i)] < self.A[i]:
+            self._swap(i, self.get_parent(i))
             i = self.get_parent(i)
     
     def get_heap_maximum(self):
@@ -119,14 +123,9 @@ class Heap(object):
 if __name__ == "__main__":
     heap = Heap([2,4,1,8,21,4,2,12,3,6])
     heap.build_max_heap()
-    max = heap.extract_max()
-    print max
-    print heap 
-    max = heap.extract_max()
-    print max
     print heap
-    heap.build_max_heap()
+    heap.insert(100)
     print heap
-    
+
     #heap.set_heap_increase_key(1, 20)
     #print heap 
