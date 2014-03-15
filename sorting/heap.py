@@ -1,12 +1,3 @@
-class Node(object):
-    def __init__(self, data):
-        self.data = data
-        self.children = []
-
-    def add_children(self, obj):
-        self.children.append(obj)
-
-
 class Heap(object):
 
     def __init__(self,val=[4, 1, 3, 2, 16, 9, 10, 14, 8, 7]):
