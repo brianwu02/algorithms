@@ -46,6 +46,16 @@ class TestCase(unittest.TestCase):
         list2 = sorted(self.unsorted_array)
         self.assertEqual(list1, list2)
 
+    def test_heapsort_correctness_after_insertion(self):
+        """tests to see if heap sort works properly after element
+        insertion."""
+        pass
+
+    def test_heap_correctness_after_insertion(self):
+        """checks to see whether or not heap constraints are
+        still satisified after an element insertion"""
+        pass
+
 
 if __name__ == "__main__":
     unittest.main()
