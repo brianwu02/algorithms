@@ -21,7 +21,7 @@ class TestCase(unittest.TestCase):
         """this method is tested for correctness"""
         return all(A[i] >= A[(i - 1) // 2] for i in range(1, len(A)))
 
-    def max_heap_correctness(self, A):
+    def is_maxheap(self, A):
         """simply invert values, returns True if max-heap property is satisfied."""
         A = map(lambda x: x * -1, A)
         return all(A[i] >= A[(i - 1) // 2] for i in range(1, len(A)))
