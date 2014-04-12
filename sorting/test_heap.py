@@ -34,8 +34,6 @@ class TestCase(unittest.TestCase):
         """tests to see whether or not Heap sorts correctly by sorting
         a list using heap sort and comparing it to a sort using python's
         standard library sort."""
-        
-
         # initialize heap with this array
         h = Heap(self.unsorted_array)
         # build the heap using max heapify
@@ -61,12 +59,17 @@ class TestCase(unittest.TestCase):
         found on stackoverflow: 
         https://stackoverflow.com/questions/16414671/\
                 determining-if-a-list-of-numbers-is-in-heap-order-python-3-2
-        
+        """
         def is_heap(A):
             return all(A[i] >= A[(i - 1) // 2] for i in range(1, len(A)))
-        
-        """
-        pass
+
+        h = Heap(self.unsorted_array)
+        h.build_max_heap()
+        list_1 = h.get_array()
+
+        self.assertTrue(is_heap(list_1))
+
+
 
 
 if __name__ == "__main__":
