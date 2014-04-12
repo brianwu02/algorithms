@@ -16,6 +16,10 @@ class TestCase(unittest.TestCase):
     def tearDown(self):
         """don't think anything needs to be removed."""
         pass
+    
+    def is_heap(A):
+        """this method is tested for correctness"""
+        return all(A[i] >= A[(i - 1) // 2] for i in range(1, len(A)))
 
     def test_sort_does_not_work(self):
         """makes sure that heap does not return a sorted array before
@@ -70,6 +74,11 @@ class TestCase(unittest.TestCase):
 
         Verify that is_heap => true for an inverted max heap.
         """
+        max_heap = [21, 12, 4, 8, 6, 1, 2, 2, 3, 4]
+        self.assertFalse(
+
+
+
 
 
     def test_heap_correctness_after_insertion(self):
