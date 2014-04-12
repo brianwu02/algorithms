@@ -1,3 +1,6 @@
+# TODO:
+#   implement min-heapify
+
 class Heap(object):
     """
     Real life Use cases:
@@ -21,7 +24,7 @@ class Heap(object):
         self.heap_size = len(self.A) - 1
         # this attribute does not get modified.
         self.heap_length = len(self.A) - 1
-        print("unsorted list: %s") % (self.A)
+        #print("unsorted list: %s") % (self.A)
         pass
 
     def get_parent(self, i):
@@ -66,7 +69,7 @@ class Heap(object):
         """
         for i in range(self.heap_size / 2, -1, -1):
             self.max_heapify(i)
-        print("max_heap: %s") % (self.A)
+        #print("max_heap: %s") % (self.A)
 
     def heap_sort(self):
         """runs in O(n lg n) sorts an array in place. 
@@ -81,11 +84,10 @@ class Heap(object):
             self._swap(0, i)
             self.heap_size -= 1
             self.max_heapify(0)
-        print ("sorted heap %s") % (self.A)
+        #print ("sorted heap %s") % (self.A)
 
     def _swap(self, i, j):
         self.A[i], self.A[j] = self.A[j], self.A[i]
-        print("swapping %s with %s") % (self.A[i], self.A[j])
 
     def insert(self, key):
         """implements the max-heap-insert. """
@@ -106,7 +108,7 @@ class Heap(object):
         """increases value of A[i] to key. if key < A[i], raise exception.
         otherwise, assign the value of key to A[i].
         """
-        print("key: %s, self.A[i]: %s") % (key, self.A[i])
+        #print("key: %s, self.A[i]: %s") % (key, self.A[i])
         if key < self.A[i]:
             raise Exception("new key is smaller than current key")
         self.A[i] = key
@@ -117,14 +119,20 @@ class Heap(object):
     def get_heap_maximum(self):
         return self.A[0]
 
+    def get_array(self):
+        return self.A
+
     def __repr__(self):
         return str(self.A)
 
 if __name__ == "__main__":
-    heap = Heap([2,4,1,8,21,4,2,12,3,6])
+    unsorted_array = [2,4,1,8,21,4,2,12,3,6]
+    heap = Heap(unsorted_array)
     heap.build_max_heap()
-    print heap
+    #print heap
     heap.insert(100)
+    #print heap
+    heap.heap_sort()
     print heap
 
     #heap.set_heap_increase_key(1, 20)
