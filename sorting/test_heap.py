@@ -104,7 +104,8 @@ class TestCase(unittest.TestCase):
 
         h = Heap(self.unsorted_array)
         h.build_max_heap()
-        h.insert(5)
+        for i in range(9):
+            h.insert(i)
         list_1 = h.get_array()
         self.assertTrue(self.is_maxheap(list_1))
 
@@ -113,7 +114,9 @@ class TestCase(unittest.TestCase):
         h = Heap(self.unsorted_array)
         h.build_max_heap()
         h.insert(5)
+        h.insert(10)
         self.unsorted_array.append(5)
+        self.unsorted_array.append(10)
         h.heap_sort()
         sorted_array = sorted(self.unsorted_array)
         list_1 = h.get_array()
