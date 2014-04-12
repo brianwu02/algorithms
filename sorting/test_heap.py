@@ -19,8 +19,16 @@ class TestCase(unittest.TestCase):
     def test_sort_does_not_work(self):
         """makes sure that heap does not return a sorted array before
         sort is called. sounds stupid but needs to be done lol."""
+        h = Heap(self.unsorted_array)
+        
+        h.build_max_heap()
 
+        #h.heap_sort()
 
+        list_1 = h.get_array() # should probably change this method name. bad name.
+        list_2 = sorted(self.unsorted_array)
+
+        self.assertNotEqual(list_1, list_2)
 
     def test_sort_correctness(self):
         """tests to see whether or not Heap sorts correctly by sorting
