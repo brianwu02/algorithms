@@ -1,11 +1,10 @@
 import unittest
 import heapq
 from heap import Heap
-
-
-"""
-Use Python's standard sort method to test whether or not Heap sorts values correctly.
-"""
+# Use Python's standard sort method to determine whether or not Heap sorts values correctly.
+#
+# Use heapq module to determine max_heapify works correctly.
+# max_heapify() takes an input array and ensures that max_heap constraints are met.
 
 class TestCase(unittest.TestCase):
 
@@ -63,6 +62,14 @@ class TestCase(unittest.TestCase):
         list_1 = self.unsorted_array
         heapq.heapify(list_1)
         self.assertTrue(is_heap(list_1))
+
+    def test_maxheap_to_minheap(self):
+        """we can turn a max heap in to a min heap by inverting the values.
+        e.g. max heap: [21, 12, 4, 8, 6, 1, 2, 2, 3, 4] is the same as 
+        min heap: [-21, -12, -4, -8, -6, -1, -2, -2, -3, -4].
+
+        Verify that is_heap => true for an inverted max heap.
+        """
 
 
     def test_heap_correctness_after_insertion(self):
