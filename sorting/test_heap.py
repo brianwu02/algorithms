@@ -54,11 +54,6 @@ class TestCase(unittest.TestCase):
         list2 = sorted(self.unsorted_array)
         self.assertEqual(list1, list2)
 
-    def test_heapsort_correctness_after_insertion(self):
-        """tests to see if heap sort works properly after element
-        insertion."""
-        pass
-
     def test_is_heap_method_works(self):
         """we are using a is_heap method found on stackoverflow to verify
         heap correctness.
@@ -113,6 +108,11 @@ class TestCase(unittest.TestCase):
         list_1 = h.get_array()
 
         self.assertTrue(is_heap(list_1))
+
+    def test_heapsort_correctness_after_insertion(self):
+        """tests to see if heap sort works properly after element
+        insertion."""
+        pass
 
 
 
