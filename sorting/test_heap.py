@@ -1,5 +1,7 @@
 import unittest
+import heapq
 from heap import Heap
+
 
 """
 Use Python's standard sort method to test whether or not Heap sorts values correctly.
@@ -49,9 +51,22 @@ class TestCase(unittest.TestCase):
         insertion."""
         pass
 
+    def test_is_heap_method_works(self):
+        """we are using a is_heap method found on stackoverflow to verify
+        heap correctness.
+        heapq.heapify(list) module returns a heapified list. test to
+        heapq.heapify(list) -> is_heap(list) returns true.
+        """
+        def is_heap(A):
+            return all(A[i] >= A[(i - 1) // 2] for i in range(1, len(A)))
+
+        list_1 = self.unsorted_array
+        heapq.heapify(list_1)
+        self.assertTrue(is_heap(list_1))
+
+
     def test_heap_correctness_after_insertion(self):
-        """checks to see whether or not heap constraints are
-        still satisified after an element insertion.
+        """checks to see whether or not heap constraints are satisified after insertion.
         Heap Property: each node should be greater than or equal to its parent
         The parent of element i in a binary heap stored in an array element
         is (i - 1) // 2.
@@ -60,11 +75,19 @@ class TestCase(unittest.TestCase):
         https://stackoverflow.com/questions/16414671/\
                 determining-if-a-list-of-numbers-is-in-heap-order-python-3-2
         """
+        # NOTE:
+        # is_heap and heapq.heapify(x) BOTH implement min heaps and
+        # Heap() uses max heap. we need to invert the values so that
+        # our max-heap turns in to a min-heap to verify correctness.
+        # the other alternative is to actually write a max-heap checker
+        # or actually implement min-heap.
+
         def is_heap(A):
             return all(A[i] >= A[(i - 1) // 2] for i in range(1, len(A)))
 
         h = Heap(self.unsorted_array)
         h.build_max_heap()
+        print h
         list_1 = h.get_array()
 
         self.assertTrue(is_heap(list_1))
