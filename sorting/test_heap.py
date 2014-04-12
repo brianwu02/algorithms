@@ -53,7 +53,19 @@ class TestCase(unittest.TestCase):
 
     def test_heap_correctness_after_insertion(self):
         """checks to see whether or not heap constraints are
-        still satisified after an element insertion"""
+        still satisified after an element insertion.
+        Heap Property: each node should be greater than or equal to its parent
+        The parent of element i in a binary heap stored in an array element
+        is (i - 1) // 2.
+        
+        found on stackoverflow: 
+        https://stackoverflow.com/questions/16414671/\
+                determining-if-a-list-of-numbers-is-in-heap-order-python-3-2
+        
+        def is_heap(A):
+            return all(A[i] >= A[(i - 1) // 2] for i in range(1, len(A)))
+        
+        """
         pass
 
 
