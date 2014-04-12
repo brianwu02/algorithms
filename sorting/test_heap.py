@@ -17,6 +17,19 @@ class TestCase(unittest.TestCase):
         """don't think anything needs to be removed."""
         pass
     
+    def test_is_heap_method_works(self):
+        """we are using a is_heap method found on stackoverflow to verify
+        heap correctness.
+        heapq.heapify(list) module returns a heapified list. test to
+        heapq.heapify(list) -> is_heap(list) returns true.
+        """
+        def is_heap(A):
+            return all(A[i] >= A[(i - 1) // 2] for i in range(1, len(A)))
+
+        list_1 = self.unsorted_array
+        heapq.heapify(list_1)
+        self.assertTrue(is_heap(list_1))
+
     def is_heap(self, A):
         """this method is tested for correctness"""
         return all(A[i] >= A[(i - 1) // 2] for i in range(1, len(A)))
@@ -30,14 +43,9 @@ class TestCase(unittest.TestCase):
         """makes sure that heap does not return a sorted array before
         sort is called. sounds stupid but needs to be done lol."""
         h = Heap(self.unsorted_array)
-        
         h.build_max_heap()
-
-        #h.heap_sort()
-
         list_1 = h.get_array() # should probably change this method name. bad name.
         list_2 = sorted(self.unsorted_array)
-
         self.assertNotEqual(list_1, list_2)
 
     def test_sort_correctness(self):
@@ -54,19 +62,6 @@ class TestCase(unittest.TestCase):
         list2 = sorted(self.unsorted_array)
         self.assertEqual(list1, list2)
 
-    def test_is_heap_method_works(self):
-        """we are using a is_heap method found on stackoverflow to verify
-        heap correctness.
-        heapq.heapify(list) module returns a heapified list. test to
-        heapq.heapify(list) -> is_heap(list) returns true.
-        """
-        def is_heap(A):
-            return all(A[i] >= A[(i - 1) // 2] for i in range(1, len(A)))
-
-        list_1 = self.unsorted_array
-        heapq.heapify(list_1)
-        self.assertTrue(is_heap(list_1))
-
     def test_maxheap_to_minheap(self):
         """we can turn a max heap in to a min heap by inverting the values.
         e.g. max heap: [21, 12, 4, 8, 6, 1, 2, 2, 3, 4] is the same as 
@@ -81,6 +76,14 @@ class TestCase(unittest.TestCase):
         # invert all the values and verify min-heap property.
         max_heap = map(lambda x: x * -1, max_heap)
         self.assertTrue(self.is_heap(max_heap))
+
+    def test_maxheap(self):
+        """verifies that heap.build_maxheap() returns an array that satisfies
+        the max_heap property."""
+        h = Heap(self.unsorted_array)
+        h.build_max_heap()
+        list_1 = h.get_array()
+        self.assertTrue(self.is_maxheap(list_1))
 
     def test_heap_correctness_after_insertion(self):
         """checks to see whether or not heap constraints are satisified after insertion.
@@ -99,20 +102,22 @@ class TestCase(unittest.TestCase):
         # the other alternative is to actually write a max-heap checker
         # or actually implement min-heap.
 
-        def is_heap(A):
-            return all(A[i] >= A[(i - 1) // 2] for i in range(1, len(A)))
-
         h = Heap(self.unsorted_array)
         h.build_max_heap()
-        print h
+        h.insert(5)
         list_1 = h.get_array()
-
-        self.assertTrue(is_heap(list_1))
+        self.assertTrue(self.is_maxheap(list_1))
 
     def test_heapsort_correctness_after_insertion(self):
-        """tests to see if heap sort works properly after element
-        insertion."""
-        pass
+        """tests to see if heap sort works properly after element insertion."""
+        h = Heap(self.unsorted_array)
+        h.build_max_heap()
+        h.insert(5)
+        self.unsorted_array.append(5)
+        h.heap_sort()
+        sorted_array = sorted(self.unsorted_array)
+        list_1 = h.get_array()
+        self.assertEqual(sorted_array, list_1)
 
 
 
