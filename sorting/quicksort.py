@@ -17,6 +17,15 @@ def quicksort(array):
             greater.append(element)
     return quicksort(less) + equal + quicksort(greater)
 
+# overpowered list comprehension version
+
+def qsort(arr):
+    if len(arr) <= 1:
+        return arr
+    else:
+        return qsort([x for x in arr[1:] if x < arr[0]]) + [arr[0]] + qsort([x for x in arr[1:] if x >= arr[0]])
 
 if __name__ == "__main__":
     print quicksort(array=[20, 10, 5, 1, 3, 4, 8, 2, 5])
+    print qsort(arr=[20, 10, 5, 1, 3, 4, 8, 2, 5])
+
